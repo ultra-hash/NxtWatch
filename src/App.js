@@ -9,6 +9,7 @@ import TrendingView from './components/TrendingView'
 import ThemeContext from './context/themeContext'
 
 import './App.css'
+import VideoCardItem from './components/VideoCardItem'
 
 class App extends Component {
   state = {isDarkTheme: false}
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/trending" exact component={TrendingView} />
           <Route path="/gaming" exact component={GamingView} />
           <Route path="/saved-videos" exact component={SavedVideosView} />
+          <Route path="/video-card" exact component={VideoCardItem} />
           <Redirect to="/login" />
         </Switch>
       </ThemeContext.Provider>

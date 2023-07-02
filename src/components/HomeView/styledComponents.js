@@ -1,21 +1,22 @@
 import styled from 'styled-components'
 
 export const OuterContainer = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 `
 
 export const InnerContainer = styled.div`
-  flex-grow: 1;
+  height: calc(100% - 40px);
   display: flex;
 `
 export const HomeSection = styled.div`
-  flex-grow: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: ${props => (props.dark ? '#181818' : '#f9f9f9')};
   color: ${props => (props.dark ? '#ffffff' : '#000000')};
+  overflow: auto;
 `
 export const BannerContainer = styled.div`
   padding: 30px;
@@ -85,11 +86,13 @@ export const LoaderContainer = styled.div`
   justify-content: center;
   align-items: center;
 `
-export const SuccessViewContainer = styled.div`
+export const SuccessViewContainer = styled.ul`
   flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  padding: 0;
+  list-style-type: none;
 `
 
 export const ViewContainer = styled(LoaderContainer)`

@@ -6,6 +6,7 @@ import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
 
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
+import VideoCardItem from '../VideoCardItem'
 
 import {
   OuterContainer,
@@ -61,8 +62,20 @@ class HomeView extends Component {
   }
 
   onSuccess = videos => {
+    const videosList = videos.map(item => ({
+      title: item.title,
+      id: item.id,
+      thumbnailUrl: item.thumbnail_url,
+      channel: {
+        name: item.channel.name,
+        profileImageUrl: item.channel.profile_image_url,
+      },
+      viewCount: item.view_count,
+      publishedAt: item.published_at,
+    }))
+
     this.setState({
-      videosList: videos,
+      videosList,
       apiStatus: apiStatusConstant.success,
       isLoading: false,
     })
@@ -103,7 +116,9 @@ class HomeView extends Component {
     const {videosList} = this.state
     return (
       <SuccessViewContainer>
-        <h1>Api success</h1>
+        {videosList.map(item => (
+          <VideoCardItem details={item} key={item.id} />
+        ))}
       </SuccessViewContainer>
     )
   }
