@@ -51,6 +51,8 @@ export const BannerCloseBtn = styled(Button)`
 export const HomeSectionBody = styled.div`
   flex-grow: 1;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 `
 
 export const SearchInputContainer = styled.div`
@@ -72,9 +74,44 @@ export const SearchBtn = styled.button`
   color: ${props => (props.dark ? '#ffffff' : '#000000')};
   background-color: ${props => (props.dark ? '#313031' : '#f4f4f4')};
 `
-export const ResultsContainer = styled.ul`
-  list-style-type: none;
-  padding: 0;
+export const ResultsContainer = styled.div`
+  flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
+`
+export const LoaderContainer = styled.div`
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const SuccessViewContainer = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`
+
+export const ViewContainer = styled(LoaderContainer)`
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+`
+
+export const FailureImage = styled.img`
+  width: 80%;
+  max-width: 300px;
+`
+
+export const Heading = styled.h1`
+  font-size: 20px;
+`
+
+export const RetryButton = styled.button`
+  padding: 10px 20px;
+  background-color: #4a47e0;
+  border-radius: 5px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
 `
