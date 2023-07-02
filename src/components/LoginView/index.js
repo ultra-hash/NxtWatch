@@ -1,4 +1,6 @@
 import {Component} from 'react'
+import {Redirect} from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 import {
   OuterContainer,
@@ -15,7 +17,13 @@ import {
 import ThemeContext from '../../context/themeContext'
 
 class LoginView extends Component {
-  state = {username: '', password: '', errorMsg: '', showPassword: false}
+  state = {
+    username: '',
+    password: '',
+    errorMsg: '',
+    showPassword: false,
+    showErrorMsg: false,
+  }
 
   onChangeInput = event => {
     if (event.target.id === 'username') {
@@ -29,11 +37,54 @@ class LoginView extends Component {
     this.setState(prevState => ({showPassword: !prevState.showPassword}))
   }
 
+  onLoginFormSubmit = async event => {
+    event.preventDefault()
+    const {username, password} = this.state
+
+    const loginUrl = 'https://apis.ccbp.in/login'
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    }
+
+    const response = await fetch(loginUrl, options)
+    const data = await response.json()
+
+    if (response.ok === true) {
+      this.onLoginSuccess(data.jwt_token)
+    } else {
+      this.onLoginFailure(data.error_msg)
+    }
+  }
+
+  onLoginSuccess = jwtToken => {
+    const {history} = this.props
+    Cookies.set('jwt_token', jwtToken, {expires: 1})
+    history.replace('/')
+  }
+
+  onLoginFailure = errorMsg => {
+    this.setState({errorMsg, showErrorMsg: true})
+  }
+
   render() {
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {username, password, errorMsg, showPassword} = this.state
+          const {
+            username,
+            password,
+            errorMsg,
+            showPassword,
+            showErrorMsg,
+          } = this.state
           const {isDarkTheme} = value
 
           return (
@@ -48,14 +99,14 @@ class LoginView extends Component {
                     }
                   />
                 </LogoContainer>
-                <FormContainer>
+                <FormContainer onSubmit={this.onLoginFormSubmit}>
                   <InputAndLabelContainer>
                     <LabelItem htmlFor="username" dark={isDarkTheme}>
-                      UserName
+                      USERNAME
                     </LabelItem>
                     <InputItem
                       type="text"
-                      placeholder="username"
+                      placeholder="Username"
                       value={username}
                       id="username"
                       onChange={this.onChangeInput}
@@ -64,12 +115,12 @@ class LoginView extends Component {
                   </InputAndLabelContainer>
                   <InputAndLabelContainer>
                     <LabelItem htmlFor="password" dark={isDarkTheme}>
-                      Password
+                      PASSWORD
                     </LabelItem>
                     <InputItem
                       dark={isDarkTheme}
                       type={showPassword ? 'text' : 'password'}
-                      placeholder="password"
+                      placeholder="Password"
                       value={password}
                       id="password"
                       onChange={this.onChangeInput}
@@ -82,15 +133,18 @@ class LoginView extends Component {
                       onChange={this.onClickShowPassword}
                     />
                     <LabelItem dark={isDarkTheme} htmlFor="showPassword">
+                      {' '}
                       Show Password
                     </LabelItem>
                   </div>
 
-                  <FormButton type="button" dark={isDarkTheme}>
+                  <FormButton type="submit" dark={isDarkTheme}>
                     Submit
                   </FormButton>
                 </FormContainer>
-                <ErrorMsg dark={isDarkTheme}>{errorMsg}</ErrorMsg>
+                {showErrorMsg && (
+                  <ErrorMsg dark={isDarkTheme}>*{errorMsg}</ErrorMsg>
+                )}
               </InnerContainer>
             </OuterContainer>
           )

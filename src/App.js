@@ -1,6 +1,7 @@
 import {Route, Redirect, Switch} from 'react-router-dom'
 import {Component} from 'react'
 import LoginView from './components/LoginView'
+import HomeView from './components/HomeView'
 
 import ThemeContext from './context/themeContext'
 
@@ -15,6 +16,7 @@ class App extends Component {
       <ThemeContext.Provider value={{isDarkTheme}}>
         <Switch>
           <Route path="/login" exact component={LoginView} />
+          <Route path="/" exact component={HomeView} />
           <Redirect to="/login" />
         </Switch>
       </ThemeContext.Provider>
