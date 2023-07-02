@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const NavbarContainer = styled.nav`
   padding: 10px;
@@ -34,6 +35,7 @@ export const ListItem = styled.li`
   gap: 10px;
   align-items: center;
   color: ${props => (props.dark ? '#ffffff' : '#000000')};
+  font-weight: ${props => (props.active ? 'bold' : 'normal')};
   background-color: ${props => {
     const {active, dark} = props
     if (active) {
@@ -46,4 +48,11 @@ export const ListItem = styled.li`
 export const MenuParagraphItem = styled.p`
   color: ${props => (props.dark ? '#ffffff' : '#000000')};
   min-width: 60px;
+`
+export const NavLink = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
 `

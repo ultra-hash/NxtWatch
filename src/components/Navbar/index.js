@@ -19,6 +19,7 @@ import {
   UnOrderedList,
   ListItem,
   MenuParagraphItem,
+  NavLink,
 } from './styledComponents'
 
 import ThemeContent from '../../context/themeContext'
@@ -105,41 +106,51 @@ class Navbar extends Component {
                         </CloseBtnContainer>
                         <UnOrderedList>
                           <ListItem dark={isDarkTheme} active={path === '/'}>
-                            <AiFillHome color={getColorForMenuIcon('/')} />{' '}
-                            <MenuParagraphItem dark={isDarkTheme}>
-                              Home
-                            </MenuParagraphItem>
+                            <NavLink to="/">
+                              <AiFillHome color={getColorForMenuIcon('/')} />{' '}
+                              <MenuParagraphItem dark={isDarkTheme}>
+                                Home
+                              </MenuParagraphItem>
+                            </NavLink>
                           </ListItem>
                           <ListItem
                             dark={isDarkTheme}
                             active={path === '/trending'}
                           >
-                            <HiFire color={getColorForMenuIcon('/trending')} />{' '}
-                            <MenuParagraphItem dark={isDarkTheme}>
-                              Trending
-                            </MenuParagraphItem>
+                            <NavLink to="/trending">
+                              <HiFire
+                                color={getColorForMenuIcon('/trending')}
+                              />{' '}
+                              <MenuParagraphItem dark={isDarkTheme}>
+                                Trending
+                              </MenuParagraphItem>
+                            </NavLink>
                           </ListItem>
                           <ListItem
                             dark={isDarkTheme}
                             active={path === '/gaming'}
                           >
-                            <SiYoutubegaming
-                              color={getColorForMenuIcon('/gaming')}
-                            />{' '}
-                            <MenuParagraphItem dark={isDarkTheme}>
-                              Gaming
-                            </MenuParagraphItem>
+                            <NavLink to="/gaming">
+                              <SiYoutubegaming
+                                color={getColorForMenuIcon('/gaming')}
+                              />{' '}
+                              <MenuParagraphItem dark={isDarkTheme}>
+                                Gaming
+                              </MenuParagraphItem>
+                            </NavLink>
                           </ListItem>
                           <ListItem
                             dark={isDarkTheme}
                             active={path === '/saved-videos'}
                           >
-                            <MdPlaylistAdd
-                              color={getColorForMenuIcon('/saved-videos')}
-                            />{' '}
-                            <MenuParagraphItem dark={isDarkTheme}>
-                              Saved
-                            </MenuParagraphItem>
+                            <NavLink to="/saved-videos">
+                              <MdPlaylistAdd
+                                color={getColorForMenuIcon('/saved-videos')}
+                              />{' '}
+                              <MenuParagraphItem dark={isDarkTheme}>
+                                Saved
+                              </MenuParagraphItem>
+                            </NavLink>
                           </ListItem>
                         </UnOrderedList>
                       </>
