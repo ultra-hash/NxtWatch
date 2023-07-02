@@ -15,7 +15,7 @@ import {
 import ThemeContext from '../../context/themeContext'
 
 class LoginView extends Component {
-  state = {username: '', password: '', errorMsg: ''}
+  state = {username: '', password: '', errorMsg: '', showPassword: false}
 
   onChangeInput = event => {
     if (event.target.id === 'username') {
@@ -25,11 +25,15 @@ class LoginView extends Component {
     }
   }
 
+  onClickShowPassword = () => {
+    this.setState(prevState => ({showPassword: !prevState.showPassword}))
+  }
+
   render() {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {username, password, errorMsg} = this.state
+          const {username, password, errorMsg, showPassword} = this.state
           const {isDarkTheme} = value
 
           return (
@@ -46,7 +50,9 @@ class LoginView extends Component {
                 </LogoContainer>
                 <FormContainer>
                   <InputAndLabelContainer>
-                    <LabelItem dark={isDarkTheme}>UserName</LabelItem>
+                    <LabelItem htmlFor="username" dark={isDarkTheme}>
+                      UserName
+                    </LabelItem>
                     <InputItem
                       type="text"
                       placeholder="username"
@@ -57,16 +63,29 @@ class LoginView extends Component {
                     />
                   </InputAndLabelContainer>
                   <InputAndLabelContainer>
-                    <LabelItem dark={isDarkTheme}>Password</LabelItem>
+                    <LabelItem htmlFor="password" dark={isDarkTheme}>
+                      Password
+                    </LabelItem>
                     <InputItem
                       dark={isDarkTheme}
-                      type="password"
+                      type={showPassword ? 'text' : 'password'}
                       placeholder="password"
                       value={password}
                       id="password"
                       onChange={this.onChangeInput}
                     />
                   </InputAndLabelContainer>
+                  <div>
+                    <InputItem
+                      type="checkbox"
+                      id="showPassword"
+                      onChange={this.onClickShowPassword}
+                    />
+                    <LabelItem dark={isDarkTheme} htmlFor="showPassword">
+                      Show Password
+                    </LabelItem>
+                  </div>
+
                   <FormButton type="button" dark={isDarkTheme}>
                     Submit
                   </FormButton>
