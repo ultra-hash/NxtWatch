@@ -3,14 +3,14 @@ import Sidebar from '../Sidebar'
 
 import {OuterContainer, InnerContainer} from './styledComponents'
 
-const HomeView = () => (
+const SavedVideosView = () => (
   <OuterContainer>
     <Navbar />
     <InnerContainer>
       <Sidebar />
-      <p>Home</p>
+      <p>SavedVideosView</p>
     </InnerContainer>
   </OuterContainer>
 )
 
-export default HomeView
+export default SavedVideosView

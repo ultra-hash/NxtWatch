@@ -3,14 +3,14 @@ import Sidebar from '../Sidebar'
 
 import {OuterContainer, InnerContainer} from './styledComponents'
 
-const HomeView = () => (
+const GamingView = () => (
   <OuterContainer>
     <Navbar />
     <InnerContainer>
       <Sidebar />
-      <p>Home</p>
+      <p>Gaming</p>
     </InnerContainer>
   </OuterContainer>
 )
 
-export default HomeView
+export default GamingView
