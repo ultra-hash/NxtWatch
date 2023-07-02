@@ -1,14 +1,16 @@
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 
-import {OuterContainer, InnerContainer} from './styledComponents'
+import {OuterContainer, InnerContainer, HomeSection} from './styledComponents'
 
 const HomeView = () => (
   <OuterContainer>
     <Navbar />
     <InnerContainer>
       <Sidebar />
-      <p>Home</p>
+      <HomeSection>
+        <h1>Home</h1>
+      </HomeSection>
     </InnerContainer>
   </OuterContainer>
 )

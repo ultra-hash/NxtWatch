@@ -2,12 +2,17 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
 export const MainContainer = styled.div`
+  background-color: ${props => (props.dark ? '#000000' : '#ffffff')};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
   max-width: 200px;
   flex-grow: 1;
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `
 
 export const UnOrderedList = styled.ul`
@@ -47,6 +52,7 @@ export const NavLink = styled(Link)`
 
 export const SocialContainer = styled.div`
   padding: 20px;
+  color: ${props => (props.dark ? '#ffffff' : '#000000')};
 `
 
 export const Heading = styled.h1`

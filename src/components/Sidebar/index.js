@@ -42,7 +42,7 @@ class Sidebar extends Component {
           }
 
           return (
-            <MainContainer>
+            <MainContainer dark={isDarkTheme}>
               <UnOrderedList>
                 <ListItem dark={isDarkTheme} active={path === '/'}>
                   <NavLink to="/">
@@ -80,7 +80,7 @@ class Sidebar extends Component {
                 </ListItem>
               </UnOrderedList>
 
-              <SocialContainer>
+              <SocialContainer dark={isDarkTheme}>
                 <Heading>Contact Us</Heading>
                 <SocialIconsContainer>
                   <SocialIcons

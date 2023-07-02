@@ -1,14 +1,16 @@
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 
-import {OuterContainer, InnerContainer} from './styledComponents'
+import {OuterContainer, InnerContainer, GamingSection} from './styledComponents'
 
 const GamingView = () => (
   <OuterContainer>
     <Navbar />
     <InnerContainer>
       <Sidebar />
-      <p>Gaming</p>
+      <GamingSection>
+        <h1>Gaming</h1>
+      </GamingSection>
     </InnerContainer>
   </OuterContainer>
 )

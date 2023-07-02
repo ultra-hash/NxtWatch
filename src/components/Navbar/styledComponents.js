@@ -56,3 +56,6 @@ export const NavLink = styled(Link)`
   gap: 10px;
   align-items: center;
 `
+export const LinkForLogo = styled(Link)`
+  text-decoration: none;
+`

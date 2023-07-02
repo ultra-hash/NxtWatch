@@ -20,6 +20,7 @@ import {
   ListItem,
   MenuParagraphItem,
   NavLink,
+  LinkForLogo,
 } from './styledComponents'
 
 import ThemeContent from '../../context/themeContext'
@@ -56,14 +57,16 @@ class Navbar extends Component {
 
           return (
             <NavbarContainer dark={isDarkTheme}>
-              <AppLogoImg
-                src={
-                  isDarkTheme
-                    ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-                    : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
-                }
-                alt="website logo"
-              />
+              <LinkForLogo to="/">
+                <AppLogoImg
+                  src={
+                    isDarkTheme
+                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                  }
+                  alt="website logo"
+                />
+              </LinkForLogo>
               <div>
                 <Button type="button" onClick={onToggleTheme}>
                   {isDarkTheme && <BiSun size={18} color="#ffffff" />}

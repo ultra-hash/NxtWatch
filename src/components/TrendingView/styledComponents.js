@@ -10,3 +10,7 @@ export const InnerContainer = styled.div`
   flex-grow: 1;
   display: flex;
 `
+export const TrendingSection = styled.div`
+  flex-grow: 1;
+  padding: 10px;
+`

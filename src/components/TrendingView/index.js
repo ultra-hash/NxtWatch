@@ -1,14 +1,20 @@
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 
-import {OuterContainer, InnerContainer} from './styledComponents'
+import {
+  OuterContainer,
+  InnerContainer,
+  TrendingSection,
+} from './styledComponents'
 
 const TrendingView = () => (
   <OuterContainer>
     <Navbar />
     <InnerContainer>
       <Sidebar />
-      <p>Gaming</p>
+      <TrendingSection>
+        <h1>Trending</h1>
+      </TrendingSection>
     </InnerContainer>
   </OuterContainer>
 )
