@@ -68,7 +68,11 @@ class Navbar extends Component {
                 />
               </LinkForLogo>
               <div>
-                <Button type="button" onClick={onToggleTheme}>
+                <Button
+                  type="button"
+                  onClick={onToggleTheme}
+                  data-testid="theme"
+                >
                   {isDarkTheme && <BiSun size={18} color="#ffffff" />}
                   {!isDarkTheme && <FaMoon size={18} />}
                 </Button>

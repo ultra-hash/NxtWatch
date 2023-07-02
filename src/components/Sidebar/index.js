@@ -74,7 +74,7 @@ class Sidebar extends Component {
                       color={getColorForMenuIcon('/saved-videos')}
                     />{' '}
                     <MenuParagraphItem dark={isDarkTheme}>
-                      Saved
+                      Saved videos
                     </MenuParagraphItem>
                   </NavLink>
                 </ListItem>
