@@ -37,7 +37,7 @@ class App extends Component {
             component={SavedVideosView}
           />
           <ProtectedRoute path="/video-card" exact component={VideoCardItem} />
-          <ProtectedRoute path="/not-found" exact component={NotFoundView} />
+          <Route path="/not-found" exact component={NotFoundView} />
           <Redirect to="/not-found" />
         </Switch>
       </ThemeContext.Provider>
