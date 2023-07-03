@@ -7,6 +7,7 @@ import {
   ChannelThumbnail,
   VideoTitle,
   Container,
+  ContainerRow,
   Paragraph,
 } from './styledComponents'
 
@@ -16,16 +17,19 @@ const VideoCardItem = props => {
   const {profileImageUrl, name} = channel
   return (
     <VideoCardContainer>
-      <Thumbnail src={thumbnailUrl} alt="thumbnail" />
+      <Thumbnail src={thumbnailUrl} alt="video thumbnail" />
       <TitleAndChannelLogoContainer>
-        <ChannelThumbnail src={profileImageUrl} alt="profile" />
+        <ChannelThumbnail src={profileImageUrl} alt="channel logo" />
         <Container>
           <VideoTitle>{title}</VideoTitle>
           <Paragraph>{name}</Paragraph>
-          <Paragraph>
-            <span>{viewCount}</span> views .{' '}
-            <span>{formatDistanceToNowStrict(new Date(publishedAt))}</span>
-          </Paragraph>
+          <ContainerRow>
+            <Paragraph>{viewCount} views</Paragraph>
+            <Paragraph>.</Paragraph>
+            <Paragraph>
+              {formatDistanceToNowStrict(new Date(publishedAt))}
+            </Paragraph>
+          </ContainerRow>
         </Container>
       </TitleAndChannelLogoContainer>
     </VideoCardContainer>

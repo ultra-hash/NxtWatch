@@ -29,6 +29,7 @@ import {
   FailureImage,
   Heading,
   RetryButton,
+  LinkToVideo,
 } from './styledComponents'
 
 import ThemeContext from '../../context/themeContext'
@@ -47,6 +48,7 @@ class HomeView extends Component {
     showBanner: true,
     searchInput: '',
     videosList: '',
+    search: '',
   }
 
   componentDidMount() {
@@ -87,20 +89,19 @@ class HomeView extends Component {
 
   doApiCall = async () => {
     this.setState({apiStatus: apiStatusConstant.inProgress, isLoading: true})
-    const {searchInput} = this.state
+    const {search} = this.state
     const jwtToken = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/videos/all?search=${searchInput}`
+    const url = `https://apis.ccbp.in/videos/all?search=${search}`
     const options = {
       method: 'GET',
       headers: {
         Authorization: `bearer ${jwtToken}`,
+        'Content-Type': 'Application/json',
       },
-      'Content-Type': 'Application/json',
     }
     const response = await fetch(url, options)
     const data = await response.json()
     console.log(data)
-
     if (response.ok === true) {
       this.onSuccess(data.videos)
     } else {
@@ -112,25 +113,37 @@ class HomeView extends Component {
     this.doApiCall()
   }
 
+  onClickSearch = () => {
+    const {searchInput} = this.state
+    this.setState({search: searchInput}, this.doApiCall)
+  }
+
   renderSuccessView = () => {
     const {videosList} = this.state
     return (
       <SuccessViewContainer>
         {videosList.map(item => (
-          <VideoCardItem details={item} key={item.id} />
+          <LinkToVideo key={item.id} to={`/videos/${item.id}`}>
+            <VideoCardItem details={item} />
+          </LinkToVideo>
         ))}
       </SuccessViewContainer>
     )
   }
 
-  renderNoVideosVideos = () => {
-    const {videosList} = this.state
-    return (
-      <ViewContainer>
-        <h1>Api No videos</h1>
-      </ViewContainer>
-    )
-  }
+  renderNoVideosVideos = () => (
+    <ViewContainer>
+      <FailureImage
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+        alt="no videos"
+      />
+      <Heading>No Search results found</Heading>
+      <p>Try different key words or remove search filter</p>
+      <RetryButton type="button" onClick={this.onRetry}>
+        Retry
+      </RetryButton>
+    </ViewContainer>
+  )
 
   renderFailureView = () => (
     <ThemeContext.Consumer>
@@ -179,13 +192,16 @@ class HomeView extends Component {
                 <Sidebar />
                 <HomeSection dark={isDarkTheme} data-testid="home">
                   {showBanner && (
-                    <BannerContainer>
+                    <BannerContainer data-testid="banner">
                       <BannerCloseContainer>
                         <AppLogoInsideBanner
                           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
                           alt="nxt watch logo"
                         />
-                        <BannerCloseBtn onClick={this.onCloseBanner}>
+                        <BannerCloseBtn
+                          onClick={this.onCloseBanner}
+                          data-testid="close"
+                        >
                           <AiOutlineClose />
                         </BannerCloseBtn>
                       </BannerCloseContainer>
@@ -205,7 +221,12 @@ class HomeView extends Component {
                         value={searchInput}
                         onChange={this.onChangeSearchInput}
                       />
-                      <SearchBtn dark={isDarkTheme}>
+                      <SearchBtn
+                        type="button"
+                        dark={isDarkTheme}
+                        data-testid="searchButton"
+                        onClick={this.onClickSearch}
+                      >
                         <AiOutlineSearch />
                       </SearchBtn>
                     </SearchInputContainer>

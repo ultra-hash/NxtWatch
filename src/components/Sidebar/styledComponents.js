@@ -60,7 +60,7 @@ export const Heading = styled.h1`
 `
 
 export const Paragraph = styled.p`
-  font-size: 14px;
+  font-size: ${props => (props.size ? props.size : '14')}px;
   font-weight: bold;
 `
 

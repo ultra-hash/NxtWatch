@@ -12,7 +12,6 @@ import {
   ListItem,
   NavLink,
   MenuParagraphItem,
-  Heading,
   SocialIcons,
   SocialContainer,
   SocialIconsContainer,
@@ -81,7 +80,7 @@ class Sidebar extends Component {
               </UnOrderedList>
 
               <SocialContainer dark={isDarkTheme}>
-                <Heading>Contact Us</Heading>
+                <Paragraph size={20}>CONTACT US</Paragraph>
                 <SocialIconsContainer>
                   <SocialIcons
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"

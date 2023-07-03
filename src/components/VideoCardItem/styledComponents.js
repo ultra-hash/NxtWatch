@@ -33,8 +33,15 @@ export const ChannelThumbnail = styled.img`
 export const Paragraph = styled.p`
   font-size: 14px;
   color: #94a3b8;
+  vertical-align: center;
+  margin: 5px 0;
 `
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+`
+export const ContainerRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 `

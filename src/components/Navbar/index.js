@@ -13,6 +13,7 @@ import {MdPlaylistAdd} from 'react-icons/md'
 
 import {
   NavbarContainer,
+  ButtonContainer,
   AppLogoImg,
   Button,
   CloseBtnContainer,
@@ -21,6 +22,11 @@ import {
   MenuParagraphItem,
   NavLink,
   LinkForLogo,
+  LogoutBtn,
+  ProfileIcon,
+  LogoutModalContainer,
+  LogoutOptionsModalContainer,
+  Paragraph,
 } from './styledComponents'
 
 import ThemeContent from '../../context/themeContext'
@@ -55,6 +61,10 @@ class Navbar extends Component {
             justifyContent: 'flex-start',
           }
 
+          const LogoutOverlayStyles = {
+            backgroundColor: '#00000080',
+          }
+
           return (
             <NavbarContainer dark={isDarkTheme}>
               <LinkForLogo to="/">
@@ -67,22 +77,22 @@ class Navbar extends Component {
                   alt="website logo"
                 />
               </LinkForLogo>
-              <div>
+              <ButtonContainer>
                 <Button
                   type="button"
                   onClick={onToggleTheme}
                   data-testid="theme"
                 >
-                  {isDarkTheme && <BiSun size={18} color="#ffffff" />}
-                  {!isDarkTheme && <FaMoon size={18} />}
+                  {isDarkTheme && <BiSun size={24} color="#ffffff" />}
+                  {!isDarkTheme && <FaMoon size={24} />}
                 </Button>
 
                 <Popup
                   modal
                   trigger={
-                    <Button type="button" onClick={openMenu}>
+                    <Button type="button" onClick={openMenu} onlyInSmall>
                       <GiHamburgerMenu
-                        size={20}
+                        size={24}
                         color={isDarkTheme ? '#ffffff' : '#000000'}
                       />
                     </Button>
@@ -106,7 +116,7 @@ class Navbar extends Component {
                         <CloseBtnContainer>
                           <Button type="button" onClick={close}>
                             <AiOutlineClose
-                              size={30}
+                              size={32}
                               color={isDarkTheme ? '#ffffff' : '#000000'}
                             />
                           </Button>
@@ -164,13 +174,61 @@ class Navbar extends Component {
                     )
                   }}
                 </Popup>
-                <Button type="button" onClick={openMenu}>
+                <ProfileIcon
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+                  alt="profile"
+                />
+                <Button type="button" onClick={openMenu} onlyInSmall>
                   <FiLogOut
-                    size={20}
+                    size={22}
                     color={isDarkTheme ? '#ffffff' : '#000000'}
                   />
                 </Button>
-              </div>
+
+                <Popup
+                  modal
+                  trigger={
+                    <LogoutBtn
+                      type="button"
+                      dark={isDarkTheme}
+                      onClick={openMenu}
+                    >
+                      Logout
+                    </LogoutBtn>
+                  }
+                  position="center center"
+                  overlayStyle={LogoutOverlayStyles}
+                >
+                  {close => (
+                    <LogoutModalContainer dark={isDarkTheme}>
+                      <Paragraph>Are you sure, you want to Logout?</Paragraph>
+                      <LogoutOptionsModalContainer>
+                        <Button
+                          type="button"
+                          onClick={close}
+                          padding="10px 15px"
+                          border
+                          dark={isDarkTheme}
+                          color="#94a3b8"
+                          BRadius="5px"
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          type="button"
+                          onClick={openMenu}
+                          padding="10px 15px"
+                          bgColor="#3b82f6"
+                          color="#ffffff"
+                          BRadius="5px"
+                        >
+                          Logout
+                        </Button>
+                      </LogoutOptionsModalContainer>
+                    </LogoutModalContainer>
+                  )}
+                </Popup>
+              </ButtonContainer>
             </NavbarContainer>
           )
         }}

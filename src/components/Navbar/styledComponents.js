@@ -2,20 +2,33 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
 export const NavbarContainer = styled.nav`
-  padding: 10px;
+  padding: 15px;
   background-color: ${props => (props.dark ? '#000000' : '#ffffff')};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`
+
 export const AppLogoImg = styled.img`
-  width: 100px;
+  width: 120px;
 `
 export const Button = styled.button`
-  background-color: transparent;
-  border: 0;
+  background-color: ${props => (props.bgColor ? props.bgColor : 'transparent')};
+  border: ${props => (props.border ? '1px solid #000000' : 0)};
+  border-color: #94a3b8;
+  border-radius: ${props => (props.BRadius ? props.BRadius : 0)};
   outline: none;
+  padding: ${props => (props.padding ? props.padding : 0)};
+  color: ${props => (props.color ? props.color : 'inherited')};
+  @media screen and (min-width: 768px) {
+    display: ${props => (props.onlyInSmall ? 'none' : 'inline')};
+  }
 `
 
 export const CloseBtnContainer = styled.div`
@@ -58,4 +71,36 @@ export const NavLink = styled(Link)`
 `
 export const LinkForLogo = styled(Link)`
   text-decoration: none;
+`
+export const LogoutBtn = styled.button`
+  border: ${props => (props.dark ? '#ffffff' : '#000000')} 1px solid;
+  outline: none;
+  color: ${props => (props.dark ? '#ffffff' : '#000000')};
+  padding: 10px 20px;
+  background-color: transparent;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+`
+
+export const ProfileIcon = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+`
+export const LogoutModalContainer = styled.div`
+  background-color: ${props => (props.dark ? '#212121' : '#ffffff')};
+  color: ${props => (props.dark ? '#ffffff' : '#000000')};
+  padding: 20px;
+  border-radius: 10px;
+`
+export const LogoutOptionsModalContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`
+export const Paragraph = styled.p`
+  font-size: 14px;
 `

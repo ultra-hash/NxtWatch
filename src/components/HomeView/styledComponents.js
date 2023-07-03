@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const OuterContainer = styled.div`
   height: 100vh;
@@ -12,6 +13,7 @@ export const InnerContainer = styled.div`
 `
 export const HomeSection = styled.div`
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   background-color: ${props => (props.dark ? '#181818' : '#f9f9f9')};
@@ -117,4 +119,8 @@ export const RetryButton = styled.button`
   border: 0;
   outline: none;
   color: #ffffff;
+`
+
+export const LinkToVideo = styled(Link)`
+  text-decoration: none;
 `
