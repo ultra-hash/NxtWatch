@@ -1,5 +1,6 @@
 import {Route, Redirect, Switch} from 'react-router-dom'
 import {Component} from 'react'
+import ProtectedRoute from './components/ProtectedRoute'
 import LoginView from './components/LoginView'
 import HomeView from './components/HomeView'
 import GamingView from './components/GamingView'
@@ -26,11 +27,15 @@ class App extends Component {
       >
         <Switch>
           <Route path="/login" exact component={LoginView} />
-          <Route path="/" exact component={HomeView} />
-          <Route path="/trending" exact component={TrendingView} />
-          <Route path="/gaming" exact component={GamingView} />
-          <Route path="/saved-videos" exact component={SavedVideosView} />
-          <Route path="/video-card" exact component={VideoCardItem} />
+          <ProtectedRoute path="/" exact component={HomeView} />
+          <ProtectedRoute path="/trending" exact component={TrendingView} />
+          <ProtectedRoute path="/gaming" exact component={GamingView} />
+          <ProtectedRoute
+            path="/saved-videos"
+            exact
+            component={SavedVideosView}
+          />
+          <ProtectedRoute path="/video-card" exact component={VideoCardItem} />
           <Redirect to="/login" />
         </Switch>
       </ThemeContext.Provider>
