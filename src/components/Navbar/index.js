@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import {withRouter} from 'react-router-dom'
+import Cookies from 'js-cookie'
 import Popup from 'reactjs-popup'
 
 import {BiSun} from 'react-icons/bi'
@@ -32,7 +33,11 @@ import {
 import ThemeContent from '../../context/themeContext'
 
 class Navbar extends Component {
-  state = {}
+  onLogout = () => {
+    Cookies.remove('jwt_token')
+    const {history} = this.props
+    history.replace('/login')
+  }
 
   render() {
     return (
@@ -178,23 +183,21 @@ class Navbar extends Component {
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
                   alt="profile"
                 />
-                <Button type="button" onClick={openMenu} onlyInSmall>
-                  <FiLogOut
-                    size={22}
-                    color={isDarkTheme ? '#ffffff' : '#000000'}
-                  />
-                </Button>
 
                 <Popup
                   modal
                   trigger={
-                    <LogoutBtn
-                      type="button"
-                      dark={isDarkTheme}
-                      onClick={openMenu}
-                    >
-                      Logout
-                    </LogoutBtn>
+                    <div>
+                      <Button type="button" onlyInSmall>
+                        <FiLogOut
+                          size={22}
+                          color={isDarkTheme ? '#ffffff' : '#000000'}
+                        />
+                      </Button>
+                      <LogoutBtn type="button" dark={isDarkTheme}>
+                        Logout
+                      </LogoutBtn>
+                    </div>
                   }
                   position="center center"
                   overlayStyle={LogoutOverlayStyles}
@@ -216,11 +219,11 @@ class Navbar extends Component {
                         </Button>
                         <Button
                           type="button"
-                          onClick={openMenu}
                           padding="10px 15px"
                           bgColor="#3b82f6"
                           color="#ffffff"
                           BRadius="5px"
+                          onClick={this.onLogout}
                         >
                           Logout
                         </Button>
