@@ -29,6 +29,7 @@ import {
   ContainerRow,
   Container,
   InteractiveItemBtn,
+  InteractiveParagraph,
   HorizontalLine,
   ChannelThumbnail,
   Description,
@@ -210,9 +211,11 @@ class VideoDetailsView extends Component {
                               onClick={() => onClickInteractiveItemBtn('Liked')}
                             >
                               <AiOutlineLike size={22} />{' '}
-                              <Paragraph active={checkInList('Liked')}>
+                              <InteractiveParagraph
+                                active={checkInList('Liked')}
+                              >
                                 Like
-                              </Paragraph>
+                              </InteractiveParagraph>
                             </InteractiveItemBtn>
                             <InteractiveItemBtn
                               dark={isDarkTheme}
@@ -222,9 +225,11 @@ class VideoDetailsView extends Component {
                               }
                             >
                               <AiOutlineDislike size={22} />{' '}
-                              <Paragraph active={checkInList('Disliked')}>
+                              <InteractiveParagraph
+                                active={checkInList('Disliked')}
+                              >
                                 Dislike
-                              </Paragraph>
+                              </InteractiveParagraph>
                             </InteractiveItemBtn>
                             <InteractiveItemBtn
                               dark={isDarkTheme}
@@ -232,9 +237,11 @@ class VideoDetailsView extends Component {
                               onClick={() => onClickInteractiveItemBtn('Saved')}
                             >
                               <MdPlaylistAdd size={22} />{' '}
-                              <Paragraph active={checkInList('Saved')}>
+                              <InteractiveParagraph
+                                active={checkInList('Saved')}
+                              >
                                 Saved
-                              </Paragraph>
+                              </InteractiveParagraph>
                             </InteractiveItemBtn>
                           </ContainerRow>
                         </Container>

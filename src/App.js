@@ -1,4 +1,4 @@
-import {Route, Switch} from 'react-router-dom'
+import {Route, Redirect, Switch} from 'react-router-dom'
 import {Component} from 'react'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoginView from './components/LoginView'
@@ -121,6 +121,7 @@ class App extends Component {
             />
           </VideosContext.Provider>
           <Route path="/not-found" component={NotFoundView} />
+          <Redirect to="/not-found" />
         </Switch>
       </ThemeContext.Provider>
     )

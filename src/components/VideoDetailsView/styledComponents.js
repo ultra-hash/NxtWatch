@@ -72,12 +72,7 @@ export const VideoTitle = styled.p`
 `
 export const Paragraph = styled.p`
   font-size: 14px;
-  color: ${props => {
-    if (props.active) {
-      return props.active ? '#2563eb' : '#64748b'
-    }
-    return props.color ? props.color : '#94a3b8'
-  }};
+  color: ${props => (props.color ? props.color : '#94a3b8')}};
   vertical-align: center;
   margin: 5px 0;
 `
@@ -105,6 +100,10 @@ export const InteractiveItemBtn = styled.button`
   border: 0;
   color: ${props => (props.active ? '#2563eb' : '#64748b')};
   margin: 10px 0;
+`
+
+export const InteractiveParagraph = styled(Paragraph)`
+ color: ${props => (props.active ? '#2563eb' : '#64748b')}};
 `
 export const HorizontalLine = styled.hr`
   height: 2px;
