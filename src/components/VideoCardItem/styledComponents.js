@@ -1,20 +1,40 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 export const VideoCardContainer = styled.div`
   width: 100%;
-  @media screen and (min-width: 768px) {
-    max-width: 260px;
-  }
+  ${props =>
+    !props.version &&
+    css`
+      @media screen and (min-width: 768px) {
+        max-width: 260px;
+      }
+    `}
+  ${props =>
+    props.version &&
+    css`
+      @media screen and (min-width: 768px) {
+        display: flex;
+        max-width: 600px;
+      }
+    `}
 `
 
 export const Thumbnail = styled.img`
   width: 100%;
+  ${props =>
+    props.version &&
+    css`
+      @media screen and (min-width: 576px) {
+        width: 50%;
+      }
+    `}
 `
 
 export const VideoTitle = styled.p`
   font-size: 16px;
   padding: 0;
   margin: 0;
+  font-weight: bold;
 `
 
 export const TitleAndChannelLogoContainer = styled.div`

@@ -1,11 +1,12 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import Loader from 'react-loader-spinner'
 
 import {HiFire} from 'react-icons/hi'
 
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
-
+import VideoCardItem from '../VideoCardItem'
 import ThemeContext from '../../context/themeContext'
 
 import {
@@ -13,6 +14,14 @@ import {
   InnerContainer,
   TrendingSection,
   TitleSection,
+  SuccessViewContainer,
+  LinkToVideo,
+  ResultsContainer,
+  LoaderContainer,
+  ViewContainer,
+  Heading,
+  FailureImage,
+  RetryButton,
 } from './styledComponents'
 
 const apiStatusConstant = {
@@ -81,60 +90,71 @@ class TrendingView extends Component {
     this.doApiCall()
   }
 
-  //   renderSuccessView = () => {
-  //     const {videosList} = this.state
-  //     return (
-  //       <SuccessViewContainer>
-  //         {videosList.map(item => (
-  //           <LinkToVideo key={item.id} to={`/videos/${item.id}`}>
-  //             <VideoCardItem details={item} />
-  //           </LinkToVideo>
-  //         ))}
-  //       </SuccessViewContainer>
-  //     )
-  //   }
+  renderSuccessView = () => {
+    const {videosList} = this.state
+    return (
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          return (
+            <SuccessViewContainer>
+              {videosList.map(item => (
+                <LinkToVideo
+                  key={item.id}
+                  to={`/videos/${item.id}`}
+                  dark={isDarkTheme}
+                >
+                  <VideoCardItem details={item} version={1} />
+                </LinkToVideo>
+              ))}
+            </SuccessViewContainer>
+          )
+        }}
+      </ThemeContext.Consumer>
+    )
+  }
 
-  //   renderNoVideosVideos = () => (
-  //     <ViewContainer>
-  //       <FailureImage
-  //         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-  //         alt="no videos"
-  //       />
-  //       <Heading>No Search results found</Heading>
-  //       <p>Try different key words or remove search filter</p>
-  //       <RetryButton type="button" onClick={this.onRetry}>
-  //         Retry
-  //       </RetryButton>
-  //     </ViewContainer>
-  //   )
+  renderNoVideosVideos = () => (
+    <ViewContainer>
+      <FailureImage
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+        alt="no videos"
+      />
+      <Heading>No Search results found</Heading>
+      <p>Try different key words or remove search filter</p>
+      <RetryButton type="button" onClick={this.onRetry}>
+        Retry
+      </RetryButton>
+    </ViewContainer>
+  )
 
-  //   renderFailureView = () => (
-  //     <ThemeContext.Consumer>
-  //       {value => {
-  //         const {isDarkTheme} = value
-  //         return (
-  //           <ViewContainer>
-  //             <FailureImage
-  //               src={
-  //                 isDarkTheme
-  //                   ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
-  //                   : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
-  //               }
-  //               alt="failure view"
-  //             />
-  //             <Heading>Oops! Something Went Wrong</Heading>
-  //             <p>
-  //               We are having some trouble to complete your request. Please try
-  //               again.
-  //             </p>
-  //             <RetryButton type="button" onClick={this.onRetry}>
-  //               Retry
-  //             </RetryButton>
-  //           </ViewContainer>
-  //         )
-  //       }}
-  //     </ThemeContext.Consumer>
-  //   )
+  renderFailureView = () => (
+    <ThemeContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <ViewContainer>
+            <FailureImage
+              src={
+                isDarkTheme
+                  ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+                  : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+              }
+              alt="failure view"
+            />
+            <Heading>Oops! Something Went Wrong</Heading>
+            <p>
+              We are having some trouble to complete your request. Please try
+              again.
+            </p>
+            <RetryButton type="button" onClick={this.onRetry}>
+              Retry
+            </RetryButton>
+          </ViewContainer>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
 
   render() {
     const {videosList, apiStatus, isLoading} = this.state
@@ -157,6 +177,29 @@ class TrendingView extends Component {
                     <HiFire color="#ff0000" style={iconStyle} size={50} />
                     <h1>Trending</h1>
                   </TitleSection>
+                  <ResultsContainer>
+                    {apiStatus === apiStatusConstant.success &&
+                      videosList.length !== 0 &&
+                      this.renderSuccessView()}
+
+                    {apiStatus === apiStatusConstant.success &&
+                      videosList.length === 0 &&
+                      this.renderNoVideosVideos()}
+
+                    {apiStatus === apiStatusConstant.failure &&
+                      this.renderFailureView()}
+
+                    {isLoading && (
+                      <LoaderContainer data-testid="loader">
+                        <Loader
+                          type="ThreeDots"
+                          color={isDarkTheme ? '#ffffff' : '#000000'}
+                          height="50"
+                          width="50"
+                        />
+                      </LoaderContainer>
+                    )}
+                  </ResultsContainer>
                 </TrendingSection>
               </InnerContainer>
             </OuterContainer>

@@ -7,6 +7,7 @@ import GamingView from './components/GamingView'
 import SavedVideosView from './components/SavedVideosView'
 import TrendingView from './components/TrendingView'
 import NotFoundView from './components/NotFoundView'
+import VideoDetailsView from './components/VideoDetailsView'
 
 import ThemeContext from './context/themeContext'
 
@@ -37,8 +38,12 @@ class App extends Component {
             component={SavedVideosView}
           />
           <ProtectedRoute path="/video-card" exact component={VideoCardItem} />
-          <Route path="/not-found" exact component={NotFoundView} />
-          <Redirect to="/not-found" />
+          <ProtectedRoute
+            path="/videos/:id"
+            exact
+            component={VideoDetailsView}
+          />
+          <Route path="/not-found" component={NotFoundView} />
         </Switch>
       </ThemeContext.Provider>
     )
