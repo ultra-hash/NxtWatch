@@ -12,13 +12,13 @@ import {
 } from './styledComponents'
 
 const VideoCardItem = props => {
-  const {details, version} = props
+  const {details, version, row} = props
   const {thumbnailUrl, title, channel, publishedAt, viewCount} = details
   const {profileImageUrl, name} = channel
   return (
-    <VideoCardContainer version={version}>
+    <VideoCardContainer version={version} row={row}>
       <Thumbnail src={thumbnailUrl} alt="video thumbnail" version={version} />
-      <TitleAndChannelLogoContainer version={version}>
+      <TitleAndChannelLogoContainer version={version} row={row}>
         <ChannelThumbnail src={profileImageUrl} alt="channel logo" />
         <Container version={version}>
           <VideoTitle>{title}</VideoTitle>

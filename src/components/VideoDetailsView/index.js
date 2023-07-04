@@ -144,7 +144,7 @@ class VideoDetailsView extends Component {
                         break
 
                       case 'Saved':
-                        toggleSave(id)
+                        toggleSave(videoDetails)
                         break
 
                       default:
@@ -168,7 +168,12 @@ class VideoDetailsView extends Component {
                         break
 
                       case 'Saved':
-                        result = savedVideosList.includes(id)
+                        {
+                          const target = savedVideosList.find(
+                            eachItem => eachItem.id === id,
+                          )
+                          result = target !== undefined
+                        }
                         break
 
                       default:
@@ -206,7 +211,6 @@ class VideoDetailsView extends Component {
                           </ContainerRow>
                           <ContainerRow>
                             <InteractiveItemBtn
-                              dark={isDarkTheme}
                               active={checkInList('Liked')}
                               onClick={() => onClickInteractiveItemBtn('Liked')}
                             >
@@ -218,7 +222,6 @@ class VideoDetailsView extends Component {
                               </InteractiveParagraph>
                             </InteractiveItemBtn>
                             <InteractiveItemBtn
-                              dark={isDarkTheme}
                               active={checkInList('Disliked')}
                               onClick={() =>
                                 onClickInteractiveItemBtn('Disliked')
@@ -232,7 +235,6 @@ class VideoDetailsView extends Component {
                               </InteractiveParagraph>
                             </InteractiveItemBtn>
                             <InteractiveItemBtn
-                              dark={isDarkTheme}
                               active={checkInList('Saved')}
                               onClick={() => onClickInteractiveItemBtn('Saved')}
                             >

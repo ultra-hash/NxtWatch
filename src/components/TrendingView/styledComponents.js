@@ -48,7 +48,7 @@ export const SuccessViewContainer = styled.ul`
 export const LinkToVideo = styled(Link)`
   text-decoration: none;
   padding: 10px;
-  color: ${props => (props.dark ? '#ffffff' : '#000000')};
+  color: ${props => props.color};
 `
 export const ResultsContainer = styled.div`
   flex-grow: 1;

@@ -102,7 +102,7 @@ class TrendingView extends Component {
                 <LinkToVideo
                   key={item.id}
                   to={`/videos/${item.id}`}
-                  dark={isDarkTheme}
+                  color={isDarkTheme ? '#ffffff' : '#000000'}
                 >
                   <VideoCardItem details={item} version={1} />
                 </LinkToVideo>

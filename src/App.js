@@ -27,12 +27,14 @@ class App extends Component {
     this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
   }
 
-  onToggleSave = videoId => {
+  onToggleSave = videoDetails => {
     this.setState(prevState => {
       const {savedVideosList} = prevState
-      const index = savedVideosList.indexOf(videoId)
+      const index = savedVideosList.findIndex(
+        item => item.id === videoDetails.id,
+      )
       if (index === -1) {
-        savedVideosList.push(videoId)
+        savedVideosList.push(videoDetails)
       } else {
         savedVideosList.splice(index, 1)
       }

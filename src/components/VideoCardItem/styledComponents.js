@@ -10,17 +10,24 @@ export const VideoCardContainer = styled.div`
       }
     `}
   ${props =>
-    props.version &&
+    (props.version || props.row) &&
     css`
       @media screen and (min-width: 768px) {
         display: flex;
         max-width: 600px;
       }
     `}
+
+    @media screen and (min-width: 768px) {
+    padding: 20px;
+  }
 `
 
 export const Thumbnail = styled.img`
   width: 100%;
+  max-width: 300px;
+  flex-shrink: 0;
+  flex-grow: 0;
   ${props =>
     props.version &&
     css`
@@ -41,6 +48,7 @@ export const TitleAndChannelLogoContainer = styled.div`
   display: flex;
   gap: 10px;
   padding: 10px;
+  flex-grow: 1;
 `
 
 export const ChannelThumbnail = styled.img`
