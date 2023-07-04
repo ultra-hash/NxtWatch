@@ -23,14 +23,21 @@ import {
 
 class SavedVideosView extends Component {
   renderNoVideosVideos = () => (
-    <ViewContainer>
-      <FailureImage
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
-        alt="no saved videos"
-      />
-      <Heading>No saved videos found</Heading>
-      <p>You can save your videos while watching them</p>
-    </ViewContainer>
+    <ThemeContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <ViewContainer dark={isDarkTheme}>
+            <FailureImage
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
+              alt="no saved videos"
+            />
+            <Heading>No saved videos found</Heading>
+            <p>You can save your videos while watching them</p>
+          </ViewContainer>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 
   render() {

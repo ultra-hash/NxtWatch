@@ -121,13 +121,24 @@ class HomeView extends Component {
   renderSuccessView = () => {
     const {videosList} = this.state
     return (
-      <SuccessViewContainer>
-        {videosList.map(item => (
-          <LinkToVideo key={item.id} to={`/videos/${item.id}`}>
-            <VideoCardItem details={item} />
-          </LinkToVideo>
-        ))}
-      </SuccessViewContainer>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          return (
+            <SuccessViewContainer>
+              {videosList.map(item => (
+                <LinkToVideo
+                  key={item.id}
+                  dark={isDarkTheme}
+                  to={`/videos/${item.id}`}
+                >
+                  <VideoCardItem details={item} />
+                </LinkToVideo>
+              ))}
+            </SuccessViewContainer>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 

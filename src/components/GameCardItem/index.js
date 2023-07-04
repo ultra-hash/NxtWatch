@@ -10,7 +10,7 @@ const VideoCardItem = props => {
   const {thumbnailUrl, title, viewCount} = details
   return (
     <GameCardContainer>
-      <ThumbnailImage src={thumbnailUrl} alt="" />
+      <ThumbnailImage src={thumbnailUrl} alt="video thumbnail" />
       <Paragraph dark={dark}>{title}</Paragraph>
       <ViewCountParagraph>{viewCount} Watching Worldwide</ViewCountParagraph>
     </GameCardContainer>

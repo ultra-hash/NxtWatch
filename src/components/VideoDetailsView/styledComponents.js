@@ -85,6 +85,7 @@ export const Container = styled.div`
     flex-direction: ${props => (props.row ? 'row' : 'column')};
     justify-content: ${props => (props.row ? 'space-between' : 'flex-start')};
     align-items: ${props => (props.row ? 'center' : 'flex-start')};
+  }
 `
 export const ContainerRow = styled.div`
   display: flex;

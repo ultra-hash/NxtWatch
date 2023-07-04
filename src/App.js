@@ -101,6 +101,7 @@ class App extends Component {
           <ProtectedRoute path="/trending" exact component={TrendingView} />
           <ProtectedRoute path="/gaming" exact component={GamingView} />
           <ProtectedRoute path="/video-card" exact component={VideoCardItem} />
+
           <VideosContext.Provider
             value={{
               savedVideosList,
@@ -122,7 +123,8 @@ class App extends Component {
               component={VideoDetailsView}
             />
           </VideosContext.Provider>
-          <Route path="/not-found" component={NotFoundView} />
+
+          <Route path="/not-found" exact component={NotFoundView} />
           <Redirect to="/not-found" />
         </Switch>
       </ThemeContext.Provider>

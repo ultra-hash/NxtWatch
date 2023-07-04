@@ -61,8 +61,8 @@ class LoginView extends Component {
   }
 
   onLoginSuccess = jwtToken => {
-    const {history} = this.props
     Cookies.set('jwt_token', jwtToken, {expires: 1})
+    const {history} = this.props
     history.replace('/')
   }
 
@@ -73,7 +73,8 @@ class LoginView extends Component {
   render() {
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
-      return <Redirect to="/" />
+      const {history} = this.props
+      history.replace('/')
     }
     return (
       <ThemeContext.Consumer>

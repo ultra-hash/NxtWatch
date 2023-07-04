@@ -123,4 +123,5 @@ export const RetryButton = styled.button`
 
 export const LinkToVideo = styled(Link)`
   text-decoration: none;
+  color: ${props => (props.dark ? '#ffffff' : '#000000')};
 `

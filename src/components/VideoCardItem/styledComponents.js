@@ -2,6 +2,9 @@ import styled, {css} from 'styled-components'
 
 export const VideoCardContainer = styled.div`
   width: 100%;
+  @media screen and (min-width: 768px) {
+    padding: 20px;
+  }
   ${props =>
     !props.version &&
     css`
@@ -17,15 +20,10 @@ export const VideoCardContainer = styled.div`
         max-width: 600px;
       }
     `}
-
-    @media screen and (min-width: 768px) {
-    padding: 20px;
-  }
 `
 
 export const Thumbnail = styled.img`
   width: 100%;
-  max-width: 300px;
   flex-shrink: 0;
   flex-grow: 0;
   ${props =>
@@ -35,6 +33,9 @@ export const Thumbnail = styled.img`
         width: 50%;
       }
     `}
+  @media screen and (min-width: 576px) {
+    max-width: 300px;
+  }
 `
 
 export const VideoTitle = styled.p`

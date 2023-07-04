@@ -66,6 +66,7 @@ export const ViewContainer = styled(LoaderContainer)`
   flex-direction: column;
   padding: 20px;
   text-align: center;
+  color: ${props => (props.dark ? '#ffffff' : '#000000')};
 `
 
 export const FailureImage = styled.img`
