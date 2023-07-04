@@ -225,7 +225,7 @@ class Navbar extends Component {
                           BRadius="5px"
                           onClick={this.onLogout}
                         >
-                          Logout
+                          Confirm
                         </Button>
                       </LogoutOptionsModalContainer>
                     </LogoutModalContainer>

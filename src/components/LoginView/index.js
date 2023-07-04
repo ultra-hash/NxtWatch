@@ -140,7 +140,7 @@ class LoginView extends Component {
                   </div>
 
                   <FormButton type="submit" dark={isDarkTheme}>
-                    Submit
+                    Login
                   </FormButton>
                 </FormContainer>
                 {showErrorMsg && (

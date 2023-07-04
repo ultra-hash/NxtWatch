@@ -8,7 +8,7 @@ export const OuterContainer = styled.div`
 `
 
 export const InnerContainer = styled.div`
-  height: calc(100% - 40px);
+  height: calc(100% - 67px);
   display: flex;
 `
 export const HomeSection = styled.div`
