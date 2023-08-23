@@ -95,23 +95,27 @@ class App extends Component {
       <ThemeContext.Provider
         value={{isDarkTheme, toggleTheme: this.onToggleTheme}}
       >
-        <Switch>
-          <Route path="/login" exact component={LoginView} />
-          <ProtectedRoute path="/" exact component={HomeView} />
-          <ProtectedRoute path="/trending" exact component={TrendingView} />
-          <ProtectedRoute path="/gaming" exact component={GamingView} />
-          <ProtectedRoute path="/video-card" exact component={VideoCardItem} />
+        <VideosContext.Provider
+          value={{
+            savedVideosList,
+            likedVideosList,
+            dislikedVideosList,
+            toggleSave: this.onToggleSave,
+            toggleLike: this.onToggleLike,
+            toggleDislike: this.onToggleDislike,
+          }}
+        >
+          <Switch>
+            <Route path="/login" exact component={LoginView} />
+            <ProtectedRoute path="/" exact component={HomeView} />
+            <ProtectedRoute path="/trending" exact component={TrendingView} />
+            <ProtectedRoute path="/gaming" exact component={GamingView} />
+            <ProtectedRoute
+              path="/video-card"
+              exact
+              component={VideoCardItem}
+            />
 
-          <VideosContext.Provider
-            value={{
-              savedVideosList,
-              likedVideosList,
-              dislikedVideosList,
-              toggleSave: this.onToggleSave,
-              toggleLike: this.onToggleLike,
-              toggleDislike: this.onToggleDislike,
-            }}
-          >
             <ProtectedRoute
               path="/saved-videos"
               exact
@@ -122,11 +126,11 @@ class App extends Component {
               exact
               component={VideoDetailsView}
             />
-          </VideosContext.Provider>
 
-          <Route path="/not-found" exact component={NotFoundView} />
-          <Redirect to="/not-found" />
-        </Switch>
+            <Route path="/not-found" exact component={NotFoundView} />
+            <Redirect to="/not-found" />
+          </Switch>
+        </VideosContext.Provider>
       </ThemeContext.Provider>
     )
   }

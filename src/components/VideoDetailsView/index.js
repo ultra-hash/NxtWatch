@@ -265,14 +265,9 @@ class VideoDetailsView extends Component {
                                 {videoDetails.channel.subscriberCount}{' '}
                                 subscribers
                               </Paragraph>
-                              <Description showAboveMd>
-                                {videoDetails.description}
-                              </Description>
                             </div>
                           </ContainerRow>
-                          <Description showBelowMd>
-                            {videoDetails.description}
-                          </Description>
+                          <Description>{videoDetails.description}</Description>
                         </Container>
                       </Container>
                     </>

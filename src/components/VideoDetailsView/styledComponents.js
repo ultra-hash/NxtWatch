@@ -120,11 +120,7 @@ export const Description = styled.p`
   font-size: 16px;
   color: #64748b;
 
-  @media screen and (max-width: 767px) {
-    display: ${props => (props.showBelowMd ? 'block' : 'none')};
-  }
-
   @media screen and (min-width: 767px) {
-    display: ${props => (props.showAboveMd ? 'block' : 'none')};
+    margin-left: 50px;
   }
 `
